@@ -38,3 +38,14 @@ Thermostat.prototype.powerSaveToggle = function() {
 Thermostat.prototype.resetTemperature = function() {
   this._temperature = this._defaultTemp;
 };
+
+
+Thermostat.prototype.getUsage = function() {
+  if(this._temperature < 18) {
+    return 'low-usage'
+  } else if (this._temperature < 25 ) {
+    return 'medium-usage'
+  } else if (this._temperature >= 25 ) {
+    return 'high-usage'
+  }
+};

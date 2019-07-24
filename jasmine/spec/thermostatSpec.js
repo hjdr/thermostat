@@ -70,4 +70,27 @@ describe('Thermostat', function() {
     });
   });
 
+  describe('getUsage', function() {
+    it('returns low-usage if temp < 18', function() {
+      while (thermostat.getTemperature() > 12) {
+        thermostat.decreaseTemperature();
+      }
+      expect(thermostat.getUsage()).toEqual('low-usage');
+    });
+
+    it('returns medium-usage if temp 18 <-> 25', function() {
+      while (thermostat.getTemperature() < 24) {
+        thermostat.increaseTemperature();
+      }
+      expect(thermostat.getUsage()).toEqual('medium-usage');
+    });
+
+    it('returns high-usage if temp > 25', function() {
+      thermostat.powerSaveToggle();
+      while (thermostat.getTemperature() < 30) {
+        thermostat.increaseTemperature();
+      }
+      expect(thermostat.getUsage()).toEqual('high-usage');
+    });
+  });
 });

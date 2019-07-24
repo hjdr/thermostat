@@ -56,6 +56,12 @@ GIVEN: I want to reset the temp
 WHEN: I click resetTemperature
 THEN: the temp should return to 20
 
+You can ask about the thermostat's current energy usage: < 18 is low-usage, < 25 is medium-usage, anything else is high-usage.
+
+Scenario: User wants to know usage
+GIVEN: I ask what my current usage is
+WHEN: I click getUsage
+THEN: then the usage should be provided
 
 
 The minimum temperature is 10 degrees
