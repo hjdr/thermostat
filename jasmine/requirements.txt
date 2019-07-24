@@ -19,6 +19,44 @@ GIVEN: I want to decrease the temp
 WHEN: I click down temp
 THEN: the temp decreases by one degrees
 
+The minimum temperature is 10 degrees
+
+Scenario: Thermostat operator wants to decrease to 9
+GIVEN: The temp is 10 degrees
+WHEN: I click down temp
+THEN: the thermostat throws an error
+
+If power saving mode is on, the maximum temperature is 25 degrees
+
+Scenario: Power saving mode is on
+GIVEN: The temp is 25 degrees
+WHEN: I click up temp
+THEN: the thermostat throws an error
+
+If power saving mode is off, the maximum temperature is 32 degrees
+
+Scenario: Power saving mode is on
+GIVEN: I want to turn it off
+WHEN: I click powerSaveToggle
+THEN: Power saving mode turns to off
+
+Scenario: Power saving mode is off
+GIVEN: The temp is 32 degrees
+WHEN: I click up temp
+THEN: the thermostat throws an error
+
+GIVEN: I want to turn it off
+WHEN: I click powerSaveToggle
+THEN: Power saving mode turns to on
+
+You can reset the temperature to 20 with a reset function
+
+Scenario: Temperature is not 20
+GIVEN: I want to reset the temp
+WHEN: I click resetTemperature
+THEN: the temp should return to 20
+
+
 
 The minimum temperature is 10 degrees
 If power saving mode is on, the maximum temperature is 25 degrees
