@@ -2,10 +2,16 @@ require 'sinatra/base'
 
 class ApplicationManager < Sinatra::Base
 
-  enable :sessions
+  configure do
+    set :public_folder, File.dirname(__FILE__) + '/'
+  end
 
-  get '/' do
-    File.read(File.join('public', 'thermostat.html'))
+  get '/temperature' do
+    File.read('public/thermostat.html')
+  end
+
+  post '/temperature' do
+
   end
 
   run! if app_file == $0
