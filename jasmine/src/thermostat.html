@@ -3,17 +3,30 @@
   <head>
     <title>Thermostat</title>
     <script src="thermostat.js"></script>
+    <script src="jquery.js"></script>
+    <script src="interface.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css"> 
   </head>
 
   <body>
-      <h1 class="get-temp">SHOW TEMP</h1>
-      <h1 class="power-save">POWER SAVE MODE: ON</h1>
-      <h1 class="show-usage">SHOW USAGE</h1>
+      <section>
+        <h1>Current temp: <span id="current-temp"></span></h1>
+        <form id="select-city">
+          <input id="current-city" type="text" placeholder="Enter a city">
+          <input type="submit">
+        </form>
+      </section>
+      <h1 id="get-temp"></h1>
+      <h1 id="power-save">POWER SAVE MODE: ON</h1>
+      <h1 id="show-usage">SHOW USAGE</h1>
 
       <p>Change Temperature</p>
       <button id="increase-temp">+</button>
       <button id="decrease-temp">-</button>
       <button id="reset-temp">Reset Temperature</button>
+
+      <p>PSM Toggle</p>
+      <button id="toggle-psm">Toggle Power Saving Mode</button>
   </body>
 
 </html>

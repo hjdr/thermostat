@@ -23,7 +23,6 @@ describe('Thermostat', function() {
     while(thermostat.getTemperature() < 32) {
       thermostat.increaseTemperature();
     }
-
     expect(function() {thermostat.increaseTemperature(); }).toThrowError('Temp cannot surpass 32 degrees');
   });
 
@@ -53,8 +52,24 @@ describe('Thermostat', function() {
       console.log(thermostat.getTemperature());
       expect(function() {thermostat.increaseTemperature();}).toThrowError('Power saving mode is on, turn off to surpass 25');
     });
-
   });
+
+  describe('powerSaveModeStatus', function () {
+    it('returns if the power save mode is on', function (){
+      expect(thermostat.powerSaveModeStatus()).toEqual('Power Save Mode: On')
+    })
+
+    it('returns if the power save mode is off', function (){
+      thermostat.powerSaveToggle();
+      expect(thermostat.powerSaveModeStatus()).toEqual('Power Save Mode: Off')
+    })
+
+    it('returns if the power save mode is on once turned off and on', function (){
+      thermostat.powerSaveToggle();
+      thermostat.powerSaveToggle();
+      expect(thermostat.powerSaveModeStatus()).toEqual('Power Save Mode: On')
+    })
+  })
 
   describe('resetTemperature', function() {
     it('When the temperature is above 20, it resets to 20', function() {
