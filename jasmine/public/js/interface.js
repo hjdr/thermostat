@@ -1,17 +1,24 @@
 
 $( document ).ready(function() {
+
+
   
   var thermostat = new Thermostat();
-
+  
+  displayTemperature()
   updateTemperature();
   updatePowerSavingMode();
   displayWeather('London')
 
   $('#get-temp').text(thermostat.getTemperature());
   $('#power-save').text(thermostat.powerSaveModeStatus());
+  
   $('#increase-temp').click(function() { 
     thermostat.increaseTemperature();
     updateTemperature();
+    $.post('http://localhost:9292/temperature/post-temp',thermostat.getTemperature(), function(data, status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
   });
 
   $('#decrease-temp').click(function() {
@@ -47,6 +54,12 @@ $( document ).ready(function() {
   function displayWeather(city) {
     $.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=a3d9eb01d4de82b9b8d0849ef604dbed`, function(data) {
       $('#current-temp').text(data.main.temp);
+    })
+  }
+
+  function displayTemperature() {
+    $.get('http://localhost:9292/temperature/get-temp', function(temp) {
+      $('#get-temp').text(temp);
     })
   }
 
